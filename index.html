@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ظل الشجرة | الصور النابضة</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0c;
+            --bg-secondary: #121216;
+            --bg-tertiary: #1a1a22;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --accent-copper: #c5a059;
+            --text-light: #f5f5f7;
+            --text-muted: #a0a0ab;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --font-title: 'Amiri', serif;
+            --font-body: 'Tajawal', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .art-title {
+            font-family: var(--font-title);
+            letter-spacing: 0.5px;
+        }
+
+        /* Ambient Background Effect */
+        .ambient-glow {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 1.2rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 2px;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--accent-gold);
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .icon-btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* SPA Page Containers */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: calc(100vh - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(to bottom, rgba(10,10,12,0.6), var(--bg-primary)), url(' images /KAVER.jpg') center/cover no-repeat;
+            background-color: var(--bg-secondary);
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 12, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-gold-light);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-copper));
+            color: #000;
+            padding: 1rem 2.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 2px;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Slider / Carousel Feature */
+        .featured-slider {
+            padding: 5rem 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 550px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            background: var(--bg-tertiary);
+        }
+
+        .slide img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .slide-info {
+            position: relative;
+            z-index: 2;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            width: 100%;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-artist {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 12, 0.7);
+            border: 1px solid var(--border-gold);
+            color: var(--accent-gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .slider-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .slider-btn.prev { right: 20px; }
+        .slider-btn.next { left: 20px; }
+
+        /* Gallery Grid Page */
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--text-muted);
+            padding: 0.6rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 4% 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .art-card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .art-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .art-img-wrap {
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+        }
+
+        .art-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-card:hover .art-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .art-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 12, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .art-card:hover .art-overlay {
+            opacity: 1;
+        }
+
+        .art-details {
+            padding: 1.5rem;
+        }
+
+        .art-title {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .art-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 0.8rem;
+        }
+
+        .art-price {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-gold);
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+            background: var(--bg-tertiary);
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Exhibitions Page */
+        .exhibitions-list {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 4% 5rem;
+        }
+
+        .exhibition-card {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .exhibition-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: var(--bg-tertiary);
+        }
+
+        .exhibition-info {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .exhibition-date {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Page */
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 4% 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-light);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: #050507;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 4rem 4% 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Favorites Sidebar / Drawer */
+        .drawer {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 380px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-gold);
+            z-index: 1500;
+            padding: 2rem;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+        }
+
+        .drawer.active {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.5rem; }
+            .modal-content { grid-template-columns: 1fr; }
+            .exhibition-card { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+            .drawer { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <a href="#" class="logo" onclick="switchPage('home')">
+            <div class="logo-mark">A</div>
+            <span>ظل الشجرة</span>
+        </a>
+        <ul class="nav-links">
+            <li><a class="nav-link active" onclick="switchPage('home')">الرئيسية</a></li>
+            <li><a class="nav-link" onclick="switchPage('gallery')">الصور</a></li>
+            <li><a class="nav-link" onclick="switchPage('exhibitions')">مشاهد من الرواية</a></li>
+            <li><a class="nav-link" onclick="switchPage('about')">عن ظل الشجرة</a></li>
+            <li><a class="nav-link" onclick="switchPage('contact')">تواصل معنا</a></li>
+        </ul>
+        <div class="header-actions">
+            <button class="icon-btn" onclick="toggleFavDrawer()">
+                ❤️ <span id="favCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page 1: Home -->
+    <section id="page-home" class="page active">
+        <div class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+               <h1 class="hero-title">ظل الشجرة (شطح إلى عالم موازى)</h1>
+               <p class="hero-subtitle">«ثلاثية روائية نسجت خيوطها بين واقعٍ يخلب العقول، ورومانسيةٍ تشدو للوجدان، وفنتازيا تحلّق في آفاق الخيال.. صُممت صياغتها لتخاطب ذائقة النخبة.»</p>
+                <button class="cta-btn" onclick="switchPage('gallery')">استكشف المشاهد</button>
+            </div>
+        </div>
+
+        <!-- Masterpiece Slider -->
+        <div class="featured-slider">
+            <div class="section-header">
+                <h2 class="section-title">شخصيات مؤثرة</h2>
+                <p class="section-subtitle">نبض من قلب الرواية</p>
+            </div>
+            <div class="slider-container">
+                <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+                <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Dynamic Slide Items -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: Gallery -->
+    <section id="page-gallery" class="page">
+        <div class="section-header">
+            <h2 class="section-title">نبذة من فصول الرواية</h2>
+            <p class="section-subtitle">تصفح دور الشخصيات</p>
+        </div>
+
+        <div class="gallery-controls">
+            <button class="filter-btn active" onclick="filterGallery('all')">الكل</button>
+            <button class="filter-btn" onclick="filterGallery('paintings')">شخصيات عالم الواقع</button>
+            <button class="filter-btn" onclick="filterGallery('sculptures')">شخصيات عالم البرزخ</button>
+            <button class="filter-btn" onclick="filterGallery('digital')">شخصيات من عالم الروح</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Dynamic Gallery Cards -->
+        </div>
+    </section>
+
+    <!-- Page 3: Exhibitions -->
+    <section id="page-exhibitions" class="page">
+        <div class="section-header">
+            <h2 class="section-title">الأجزاء القادمة</h2>
+        </div>
+        <div class="exhibitions-list" id="exhibitionsList">
+            <!-- Dynamic Exhibitions -->
+        </div>
+    </section>
+
+    <!-- Page 4: About -->
+    <section id="page-about" class="page">
+        <div class="section-header">
+            <h2 class="section-title">عن ظل الشجرة</h2>
+            <p class="section-subtitle">رواية تجمع بين الرومانسية الشغوفة والخيال الساحر</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; padding: 0 4% 5rem; text-align: center; color: var(--text-muted); line-height: 2;">
+            <p>«أعمالٌ روائية تتجاوز حدود المألوف؛ حيث يتمازج الذهول بالحب والأسطورة، في صياغةٍ أدبية رفيعة لا تقتنيها إلا الذوائق الاستثنائية.»</p>
+            <br>
+            <p>«مجموعة روائية تجمع بين غرابة الواقع، وسحر الرومانسية، وجنون الخيال.. صِيغت بحرفيةٍ أدبية عالية لتليق بالنخبة من عشاق الأدب الرفيع.»</p>
+        </div>
+    </section>
+
+    <!-- Page 5: Contact -->
+    <section id="page-contact" class="page">
+        <div class="section-header">
+            <h2 class="section-title">تواصل معنا</h2>
+            <p class="section-subtitle">للحجز واقتناء المجموعة</p>
+        </div>
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="handleContact(event)">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>الرسالة</label>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="cta-btn">إرسال الرسالة</button>
+            </form>
+            <div style="display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;">
+                <div>
+                    <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">المقر الرئيسي</h3>
+                    <p style="color: var(--text-muted);">مصر - القاهرة</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">ساعات الدردشة</h3>
+                    <p style="color: var(--text-muted);">يومياً من 4:00 مساءً حتى 11:00 مساءً (بحجز مسبق)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Lightbox -->
+    <div class="modal" id="artModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">✕</button>
+            <img class="modal-img" id="modalImg" src="" alt="">
+            <div class="modal-body">
+                <div>
+                    <h2 class="art-title" id="modalTitle" style="font-size: 2rem; margin-bottom: 0.5rem;"></h2>
+                    <p id="modalArtist" style="color: var(--accent-gold); margin-bottom: 1.5rem;"></p>
+                    <p id="modalDesc" style="color: var(--text-muted); font-size: 0.95rem;"></p>
+                </div>
+                <div>
+                    <div id="modalPrice" class="art-price" style="font-size: 1.5rem; margin-bottom: 1rem;"></div>
+                    <button class="cta-btn" style="width: 100%;" onclick="alert('تم إرسال طلب الاقتناء، سيتواصل معك البائعين لدينا.')">طلب اقتناء هذه القطعة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Drawer -->
+    <div class="drawer" id="favDrawer">
+        <div class="drawer-header">
+            <h3 style="color: var(--accent-gold);">الأعمال المفضلة</h3>
+            <button class="close-modal" style="position: static;" onclick="toggleFavDrawer()">✕</button>
+        </div>
+        <div id="favList" style="display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Favorites Items -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">ظل الشجرة</div>
+        <p>&copy; الصفحة الرئيسية للرواية. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // C:\Users\Montasser\Desktop\images
+const artData = [  
+            {
+                id: 1,
+                title: "خالد",
+                artist: "عالم الواقع",
+                category: "paintings",
+                price: "الإصدار الأول",
+                         image: "images/KHALED.jpg",  
+                desc: "بطل الأحداث الذي يتنقل بين خيوط الذاكرة وعالم موازٍ مليء بالأسرار."
+            },            {
+                id: 2,
+                title: "سدن",
+                artist: "عالم البرزخ",
+                category: "sculptures",
+                price: "الإصدار الثاني",
+                image: " images /SADN.png",  
+                desc: "شخصية محورية تحمل أسرار الأبعاد الغامضة وتتقاطع طرقها مع خالد."
+            },
+            {
+                id: 3,
+                title: "ماريا",
+                artist: "عالم الروح",
+                category: "digital",
+                price: "الإصدار الخاص",
+                image: " images /MARIA.png",  
+                desc: "طيف نقي يربط بين عوالم الوعي واللاشعور بروحانية طاغية."
+            },
+            {
+                id: 4,
+                title: "نوارة",
+                artist: "عالم الواقع",
+                category: "paintings",
+                price: "الإصدار الأول",
+                image: " images /NAWARA.jpg",  
+                desc: "نبض الحياة والواقع الملموس وسط عواصف الخيال الملحمي."
+            },
+            {
+                id: 5,
+                title: "وسن",
+                artist: "عالم الروح",
+                category: "digital",
+                price: "الإصدار الخاص",
+                image: " images /WASN.jpeg",  
+                desc: "أحلام اليقظة والحد الفاصل بين النوم واليقظة المطلقة."
+            }
+        ];
+
+        const exhibitionsData = [
+            {
+                title: "الجزء الأول: عرش الزجاج والسراب",
+                date: "قريباً في صالات النشر 2026",
+                image: " images /1.jpg",  
+                desc: "بداية الرحلة حيث يكتشف البطل الشطح إلى العالم الموازي بين أوراق الشجر القديمة."
+            },
+            {
+                title: "الجزء الثاني: نبيذ القمر",
+                date: "قريباً",
+                image: " images /2.jpg",  
+                desc: "توغل أعمق في تفاصيل الفنتازيا العالية والمشاعر المرتبطة بعوالم البرزخ."
+            },
+            {
+                title: "الجزء الثالث: صداء الذاكرة",
+                date: "قريباً",
+                image: " images /3.jpg",  
+                desc: "الملحمة الكبرى وختام الثلاثية العابرة للأعصار والأزمنة."
+            }
+        ];
+
+        let favorites = [];
+        let currentSlide = 0;
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if(targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            const activeNav = Array.from(document.querySelectorAll('.nav-link')).find(el => el.getAttribute('onclick').includes(pageId));
+            if(activeNav) activeNav.classList.add('active');
+        }
+
+        function renderSlider() {
+            const track = document.getElementById('sliderTrack');
+            track.innerHTML = artData.map(item => `
+                <div class="slide">
+                    <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">
+                    <div class="slide-info">
+                        <h3 class="slide-title">${item.title}</h3>
+                        <p class="slide-artist">${item.artist}</p>
+                        <button class="cta-btn" onclick="openModal(${item.id})">استكشف القطعة</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function moveSlide(dir) {
+            const track = document.getElementById('sliderTrack');
+            const total = artData.length;
+            currentSlide = (currentSlide + dir + total) % total;
+            track.style.transform = `translateX(${currentSlide * 100}%)`;
+        }
+
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('galleryGrid');
+            const items = filter === 'all' ? artData : artData.filter(i => i.category === filter);
+
+            grid.innerHTML = items.map(item => `
+                <div class="art-card">
+                    <div class="art-img-wrap">
+                        <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">
+                        <div class="art-overlay">
+                            <button class="icon-btn" onclick="openModal(${item.id})">🔍</button>
+                            <button class="icon-btn" onclick="toggleFavorite(${item.id})">${favorites.includes(item.id) ? '❤️' : '🤍'}</button>
+                        </div>
+                    </div>
+                    <div class="art-details">
+                        <h3 class="art-title">${item.title}</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">${item.artist}</p>
+                        <div class="art-meta">
+                            <span class="art-price">${item.price}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGallery(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderGallery(category);
+        }
+
+        function renderExhibitions() {
+            const list = document.getElementById('exhibitionsList');
+            list.innerHTML = exhibitionsData.map(ex => `
+                <div class="exhibition-card">
+                    <img class="exhibition-img" src="${ex.image}" alt="${ex.title}" onerror="this.style.display='none'">
+                    <div class="exhibition-info">
+                        <div class="exhibition-date">📅 ${ex.date}</div>
+                        <h3 class="art-title" style="font-size: 1.6rem; margin-bottom: 0.8rem;">${ex.title}</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">${ex.desc}</p>
+                        <div>
+                            <button class="cta-btn" onclick="alert('تم تسجيل طلب الحضور، سنتواصل معكم قريباً.')">حجز بطاقة دعوة</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(id) {
+            const item = artData.find(a => a.id === id);
+            if(!item) return;
+
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = item.image;
+            modalImg.style.display = 'block';
+
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalArtist').innerText = item.artist;
+            document.getElementById('modalDesc').innerText = item.desc;
+            document.getElementById('modalPrice').innerText = item.price;
+
+            document.getElementById('artModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('artModal').classList.remove('active');
+        }
+
+        function toggleFavorite(id) {
+            if(favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            document.getElementById('favCount').innerText = favorites.length;
+            renderGallery('all');
+            renderFavorites();
+        }
+
+        function toggleFavDrawer() {
+            document.getElementById('favDrawer').classList.toggle('active');
+        }
+
+        function renderFavorites() {
+            const list = document.getElementById('favList');
+            const items = artData.filter(a => favorites.includes(a.id));
+            
+            if(items.length === 0) {
+                list.innerHTML = `<p style="color: var(--text-muted);">لا توجد أعمال في المفضلة حالياً.</p>`;
+                return;
+            }
+
+            list.innerHTML = items.map(item => `
+                <div style="display: flex; gap: 1rem; align-items: center; background: var(--bg-primary); padding: 0.8rem; border-radius: 4px;">
+                    <img src="${item.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;" onerror="this.style.display='none'">
+                    <div style="flex: 1;">
+                        <h4 style="font-size: 0.95rem;">${item.title}</h4>
+                        <p style="color: var(--accent-gold); font-size: 0.85rem;">${item.price}</p>
+                    </div>
+                    <button onclick="toggleFavorite(${item.id})" style="background: none; border: none; color: #ff4d4d; cursor: pointer;">✕</button>
+                </div>
+            `).join('');
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            alert('شكراً لتواصلك معنا. تم استقبال رسالتك بنجاح.');
+            e.target.reset();
+        }
+
+        window.onload = () => {
+            renderSlider();
+            renderGallery();
+            renderExhibitions();
+        };
+    </script>
+</body>
+</html>
